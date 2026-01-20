@@ -1,35 +1,35 @@
-import { Sword, Users, Shield, Zap, Globe, Trophy } from "lucide-react";
+import { Gamepad2, Users, Shield, Zap, Globe, Trophy } from "lucide-react";
 
 const features = [
   {
-    icon: Sword,
-    title: "Survival Hardcore",
-    description: "Sfida te stesso nella modalità survival più difficile con eventi esclusivi."
+    icon: Gamepad2,
+    title: "Modalità da cui Scegliere",
+    description: "La nostra hub ha molte modalità tra cui tu puoi scegliere! Survival, SkyBlock, BedWars, KitPvP e molto altro ancora. Ogni modalità è curata nei minimi dettagli per offrirti ore di divertimento."
   },
   {
     icon: Users,
     title: "Community Attiva",
-    description: "Migliaia di giocatori pronti a costruire e collaborare insieme."
+    description: "Una famiglia di migliaia di giocatori italiani pronti ad accoglierti. Costruisci alleanze, partecipa a eventi di gruppo, scambia risorse e fai amicizie che dureranno oltre il gioco. Il nostro Discord è sempre attivo!"
   },
   {
     icon: Shield,
     title: "Anti-Cheat Avanzato",
-    description: "Sistema di protezione all'avanguardia per un gameplay equo."
+    description: "Sistema di protezione all'avanguardia sviluppato su misura per PalmaMC. Nessun hacker, nessun cheater, solo gameplay pulito e competizione leale. Il nostro staff monitora costantemente il server."
   },
   {
     icon: Zap,
     title: "Zero Lag",
-    description: "Server ottimizzati per garantire prestazioni eccellenti 24/7."
+    description: "Server ospitati su hardware di ultima generazione con connessioni in fibra ottica. TPS sempre al massimo, ping bassissimo per tutti i giocatori italiani. Prestazioni eccellenti garantite 24 ore su 24, 7 giorni su 7."
   },
   {
     icon: Globe,
     title: "Mondi Unici",
-    description: "Esplora mappe create su misura con terreni e biomi personalizzati."
+    description: "Esplora mappe create interamente a mano dal nostro team di builder. Terreni mozzafiato, biomi personalizzati, strutture nascoste e segreti da scoprire. Ogni angolo nasconde qualcosa di speciale."
   },
   {
     icon: Trophy,
     title: "Eventi Settimanali",
-    description: "Partecipa a tornei e sfide con premi esclusivi per i vincitori."
+    description: "Ogni settimana nuovi tornei, sfide esclusive e competizioni con premi reali. Classifiche sempre aggiornate, ricompense uniche e la possibilità di diventare una leggenda di PalmaMC!"
   }
 ];
 
@@ -39,11 +39,13 @@ const Features = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-20">
+          <span className="text-primary font-medium text-sm uppercase tracking-widest mb-4 block">Le Nostre Caratteristiche</span>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            Perché <span className="text-primary">PalmaMC</span>?
+            Perché <span className="text-primary">PalmaMC</span> è Diverso?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Non è solo un server, è un'esperienza unica costruita per i veri appassionati di Minecraft.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Non è solo un server Minecraft, è un'esperienza completa costruita con passione per i veri appassionati. 
+            Ogni dettaglio è pensato per farti vivere l'avventura definitiva. Scopri cosa ci rende unici.
           </p>
         </div>
 
