@@ -117,7 +117,7 @@ const Discord = () => {
 
           {/* CTA Button */}
           <Button variant="discord" size="xl" className="px-12" asChild>
-            <a href="https://discord.gg/dwrU5y2U" target="_blank" rel="noopener noreferrer">
+            <a href="https://dsc.gg/palmamcit" target="_blank" rel="noopener noreferrer">
               Entra su Discord
             </a>
           </Button>
