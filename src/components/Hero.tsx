@@ -1,7 +1,23 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Copy, Check } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const Hero = () => {
+  const [copied, setCopied] = useState(false);
+  const serverIP = "play.palmamc.it";
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(serverIP);
+      setCopied(true);
+      toast.success("IP copiato negli appunti!");
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast.error("Impossibile copiare l'IP");
+    }
+  };
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-20">
       {/* Background Effects */}
@@ -11,12 +27,6 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
-        {/* Badge */}
-        <div className="opacity-0 animate-slide-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 backdrop-blur-sm mb-8">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-sm text-muted-foreground">Server Online</span>
-        </div>
-
         {/* Main Heading */}
         <h1 className="opacity-0 animate-slide-up stagger-1 text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight">
           Benvenuto su
@@ -51,12 +61,19 @@ const Hero = () => {
         {/* Server IP */}
         <div className="opacity-0 animate-slide-up stagger-4 mt-16">
           <p className="text-muted-foreground text-sm mb-2">Indirizzo Server</p>
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-lg border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-colors duration-300 cursor-pointer group">
+          <button 
+            onClick={copyToClipboard}
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-lg border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 cursor-pointer group"
+          >
             <code className="text-lg font-mono text-foreground group-hover:text-primary transition-colors duration-300">
-              play.palmamc.it
+              {serverIP}
             </code>
-            <span className="text-xs text-muted-foreground">(clicca per copiare)</span>
-          </div>
+            {copied ? (
+              <Check size={18} className="text-green-500" />
+            ) : (
+              <Copy size={18} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+            )}
+          </button>
         </div>
       </div>
 
