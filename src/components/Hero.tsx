@@ -39,10 +39,7 @@ const Hero = () => {
           La community italiana di Minecraft più grande e attiva dove l'avventura non finisce mai. 
           Costruisci mondi incredibili, esplora terre inesplorate, conquista nemici leggendari.
         </p>
-        <p className="opacity-0 animate-slide-up stagger-2 text-lg text-muted-foreground/80 max-w-2xl mx-auto mb-12">
-          Unisciti a migliaia di giocatori italiani e diventa parte di qualcosa di speciale. 
-          Server attivo dal 2020, staff dedicato, eventi ogni settimana e una community che ti aspetta!
-        </p>
+        <div className="opacity-0 animate-slide-up stagger-2 mb-12" />
 
         {/* CTA Buttons */}
         <div className="opacity-0 animate-slide-up stagger-3 flex flex-col sm:flex-row gap-4 justify-center">
