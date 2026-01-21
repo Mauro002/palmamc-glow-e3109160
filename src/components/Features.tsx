@@ -3,8 +3,8 @@ import { Gamepad2, Users, Shield, Zap, Globe, Trophy } from "lucide-react";
 const features = [
   {
     icon: Gamepad2,
-    title: "Modalità da cui Scegliere",
-    description: "La nostra hub ha molte modalità tra cui tu puoi scegliere! Survival, SkyBlock, BedWars, KitPvP e molto altro ancora. Ogni modalità è curata nei minimi dettagli per offrirti ore di divertimento."
+    title: "Lifesteal",
+    description: "La nostra modalità principale! Ruba cuori ai tuoi nemici per sopravvivere. PvP intenso, sfide quotidiane e un'esperienza unica che ti terrà incollato al gioco."
   },
   {
     icon: Users,
