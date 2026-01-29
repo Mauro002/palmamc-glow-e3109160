@@ -14,7 +14,7 @@ const features = [
   {
     icon: Shield,
     title: "Anti-Cheat Avanzato",
-    description: "Sistema di protezione all'avanguardia sviluppato su misura per PalmaMC. Nessun hacker, nessun cheater, solo gameplay pulito e competizione leale. Il nostro staff monitora costantemente il server."
+    description: "Sistema di protezione all'avanguardia sviluppato su misura per FelixMC. Nessun hacker, nessun cheater, solo gameplay pulito e competizione leale. Il nostro staff monitora costantemente il server."
   },
   {
     icon: Zap,
@@ -29,7 +29,7 @@ const features = [
   {
     icon: Trophy,
     title: "Eventi Settimanali",
-    description: "Ogni settimana nuovi tornei, sfide esclusive e competizioni con premi reali. Classifiche sempre aggiornate, ricompense uniche e la possibilità di diventare una leggenda di PalmaMC!"
+    description: "Ogni settimana nuovi tornei, sfide esclusive e competizioni con premi reali. Classifiche sempre aggiornate, ricompense uniche e la possibilità di diventare una leggenda di FelixMC!"
   }
 ];
 
@@ -41,7 +41,7 @@ const Features = () => {
         <div className="text-center mb-20">
           <span className="text-primary font-medium text-sm uppercase tracking-widest mb-4 block">Le Nostre Caratteristiche</span>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            Perché <span className="text-primary">PalmaMC</span> è Diverso?
+            Perché <span className="text-primary">FelixMC</span> è Diverso?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Non è solo un server Minecraft, è un'esperienza completa costruita con passione per i veri appassionati. 

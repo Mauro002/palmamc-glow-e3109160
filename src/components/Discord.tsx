@@ -63,7 +63,7 @@ const Discord = () => {
           </h2>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
-            Il cuore pulsante di PalmaMC. Chatta con altri giocatori, partecipa agli eventi esclusivi, 
+            Il cuore pulsante di FelixMC. Chatta con altri giocatori, partecipa agli eventi esclusivi, 
             ricevi supporto immediato dallo staff e resta sempre aggiornato su tutte le novità.
           </p>
           
@@ -117,7 +117,7 @@ const Discord = () => {
 
           {/* CTA Button */}
           <Button variant="discord" size="xl" className="px-12" asChild>
-            <a href="https://dsc.gg/palmamcit" target="_blank" rel="noopener noreferrer">
+            <a href="https://ds.gg/felixmcit" target="_blank" rel="noopener noreferrer">
               Entra su Discord
             </a>
           </Button>
