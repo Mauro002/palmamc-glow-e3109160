@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <span className="text-xl font-heading font-bold">
-              Palma<span className="text-primary">MC</span>
+              Felix<span className="text-primary">MC</span>
             </span>
           </div>
 
@@ -27,14 +27,14 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-muted-foreground text-sm">
-            © {currentYear} PalmaMC. Tutti i diritti riservati.
+            © {currentYear} FelixMC. Tutti i diritti riservati.
           </p>
         </div>
 
         {/* Server IP */}
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">
-            Server IP: <code className="text-primary font-mono">play.palmamc.it</code>
+            Server IP: <code className="text-primary font-mono">play.felixmc.it</code>
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
-  const serverIP = "play.palmamc.it";
+  const serverIP = "play.felixmc.it";
 
   const copyToClipboard = async () => {
     try {
@@ -31,7 +31,7 @@ const Hero = () => {
         <h1 className="opacity-0 animate-slide-up stagger-1 text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight">
           Benvenuto su
           <br />
-          <span className="text-gradient">PalmaMC</span>
+          <span className="text-gradient">FelixMC</span>
         </h1>
 
         {/* Subheading */}
