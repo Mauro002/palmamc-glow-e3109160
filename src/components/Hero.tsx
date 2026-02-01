@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 const Hero = () => {
   const [copied, setCopied] = useState(false);
-  const serverIP = "play.felixmc.it";
+  const serverIP = "play.felixmc.me";
 
   const copyToClipboard = async () => {
     try {
