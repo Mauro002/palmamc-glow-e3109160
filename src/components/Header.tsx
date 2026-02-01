@@ -27,6 +27,9 @@ const Header = () => {
             <a href="#discord" className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium">
               Discord
             </a>
+            <a href="/store" className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium">
+              Store
+            </a>
           </nav>
 
           {/* CTA Button */}
@@ -68,6 +71,13 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Discord
+            </a>
+            <a 
+              href="/store" 
+              className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Store
             </a>
             <Button variant="outline" className="w-full mt-2" asChild>
               <a href="#discord">Unisciti a noi</a>
