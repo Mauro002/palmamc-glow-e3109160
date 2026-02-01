@@ -34,7 +34,7 @@ const Footer = () => {
         {/* Server IP */}
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">
-            Server IP: <code className="text-primary font-mono">play.felixmc.it</code>
+            Server IP: <code className="text-primary font-mono">play.felixmc.me</code>
           </p>
         </div>
       </div>

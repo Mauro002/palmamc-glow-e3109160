@@ -27,7 +27,7 @@ const Header = () => {
             <a href="#discord" className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium">
               Discord
             </a>
-            <a href="/store" className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium">
+            <a href="#store" className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium">
               Store
             </a>
           </nav>
@@ -73,7 +73,7 @@ const Header = () => {
               Discord
             </a>
             <a 
-              href="/store" 
+              href="#store" 
               className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
               onClick={() => setIsMenuOpen(false)}
             >
