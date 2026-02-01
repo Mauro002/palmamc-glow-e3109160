@@ -84,6 +84,13 @@ const Store = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Supporta il server e ottieni vantaggi esclusivi con i nostri rank premium
           </p>
+          
+          {/* Under Construction Banner */}
+          <div className="mt-8 inline-flex items-center gap-2 bg-primary/20 border border-primary/40 rounded-full px-6 py-3">
+            <span className="text-primary text-lg">🚧</span>
+            <span className="text-primary font-bold text-lg">Ancora in costruzione</span>
+            <span className="text-primary text-lg">🚧</span>
+          </div>
         </div>
 
         {/* Ranks Grid */}
@@ -123,10 +130,11 @@ const Store = () => {
                 </CardContent>
                 <CardFooter>
                   <Button 
-                    className="w-full" 
+                    className="w-full opacity-50 cursor-not-allowed" 
                     variant={rank.popular ? "hero" : "outline"}
+                    disabled
                   >
-                    Acquista Ora
+                    Prossimamente
                   </Button>
                 </CardFooter>
               </Card>
