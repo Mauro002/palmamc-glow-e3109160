@@ -6,7 +6,7 @@ import { Crown, Star, Gem, Sparkles } from "lucide-react";
 const ranks = [
   {
     name: "VIP",
-    price: "4.99€",
+    price: "2.99€",
     icon: Star,
     color: "text-green-400",
     bgColor: "bg-green-500/10",
@@ -21,7 +21,7 @@ const ranks = [
   },
   {
     name: "OSCURO",
-    price: "9.99€",
+    price: "4.99€",
     icon: Gem,
     color: "text-blue-400",
     bgColor: "bg-blue-500/10",
@@ -37,7 +37,7 @@ const ranks = [
   },
   {
     name: "LAMINAX",
-    price: "19.99€",
+    price: "9.99€",
     icon: Crown,
     color: "text-primary",
     bgColor: "bg-primary/10",
@@ -54,7 +54,7 @@ const ranks = [
   },
   {
     name: "FURIAN",
-    price: "29.99€",
+    price: "14.99€",
     icon: Sparkles,
     color: "text-purple-400",
     bgColor: "bg-purple-500/10",
@@ -79,7 +79,7 @@ const Store = () => {
         {/* Title */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
-            <span className="text-gradient">Store</span> FelixMC
+            <span className="text-gradient">Store</span> EldenMC
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Supporta il server e ottieni vantaggi esclusivi con i nostri rank premium

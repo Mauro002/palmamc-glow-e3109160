@@ -12,7 +12,7 @@ const Header = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
             <span className="text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-              Felix<span className="text-primary">MC</span>
+              Elden<span className="text-primary">MC</span>
             </span>
           </a>
 
