@@ -11,7 +11,7 @@ const Discord = () => {
     const fetchDiscordData = async () => {
       try {
         // Using Discord's widget API for public server data
-        const response = await fetch('https://discord.com/api/v9/invites/dwrU5y2U?with_counts=true');
+        const response = await fetch('https://discord.com/api/v9/invites/eldenmccc?with_counts=true');
         const data = await response.json();
         
         if (data.approximate_member_count) {
@@ -63,7 +63,7 @@ const Discord = () => {
           </h2>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
-            Il cuore pulsante di FelixMC. Chatta con altri giocatori, partecipa agli eventi esclusivi, 
+            Il cuore pulsante di EldenMC. Chatta con altri giocatori, partecipa agli eventi esclusivi, 
             ricevi supporto immediato dallo staff e resta sempre aggiornato su tutte le novità.
           </p>
           
@@ -117,7 +117,7 @@ const Discord = () => {
 
           {/* CTA Button */}
           <Button variant="discord" size="xl" className="px-12" asChild>
-            <a href="https://ds.gg/felixmcit" target="_blank" rel="noopener noreferrer">
+            <a href="https://dsc.gg/eldenmccc" target="_blank" rel="noopener noreferrer">
               Entra su Discord
             </a>
           </Button>
