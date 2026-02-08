@@ -1,12 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Crown, Star, Gem, Sparkles } from "lucide-react";
+import { Crown, Star, Gem, Sparkles, ShoppingCart, User } from "lucide-react";
+import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const ranks = [
   {
     name: "VIP",
-    price: "2.99€",
+    price: 2.99,
     icon: Star,
     color: "text-green-400",
     bgColor: "bg-green-500/10",
@@ -21,7 +34,7 @@ const ranks = [
   },
   {
     name: "OSCURO",
-    price: "4.99€",
+    price: 4.99,
     icon: Gem,
     color: "text-blue-400",
     bgColor: "bg-blue-500/10",
@@ -37,7 +50,7 @@ const ranks = [
   },
   {
     name: "LAMINAX",
-    price: "9.99€",
+    price: 9.99,
     icon: Crown,
     color: "text-primary",
     bgColor: "bg-primary/10",
@@ -54,7 +67,7 @@ const ranks = [
   },
   {
     name: "FURIAN",
-    price: "14.99€",
+    price: 14.99,
     icon: Sparkles,
     color: "text-purple-400",
     bgColor: "bg-purple-500/10",
@@ -73,6 +86,98 @@ const ranks = [
 ];
 
 const Store = () => {
+  const { user, session } = useAuth();
+  const [selectedRank, setSelectedRank] = useState<typeof ranks[0] | null>(null);
+  const [minecraftUsername, setMinecraftUsername] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+
+  const handleBuyClick = (rank: typeof ranks[0]) => {
+    if (!user) {
+      toast.error("Devi accedere per acquistare un rank", {
+        action: {
+          label: "Accedi",
+          onClick: () => window.location.href = "/auth",
+        },
+      });
+      return;
+    }
+    setSelectedRank(rank);
+    setShowPurchaseDialog(true);
+  };
+
+  const handlePurchase = async () => {
+    if (!selectedRank || !minecraftUsername.trim()) {
+      toast.error("Inserisci il tuo username Minecraft");
+      return;
+    }
+
+    if (minecraftUsername.length < 3 || minecraftUsername.length > 16) {
+      toast.error("Username Minecraft deve avere tra 3 e 16 caratteri");
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      // Create PayPal order
+      const { data, error } = await supabase.functions.invoke("create-paypal-order", {
+        body: {
+          rankName: selectedRank.name,
+          price: selectedRank.price,
+          minecraftUsername: minecraftUsername.trim(),
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      const orderId = data.orderId;
+
+      // Redirect to PayPal
+      window.open(
+        `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}`,
+        "_blank"
+      );
+
+      toast.info("Completa il pagamento su PayPal, poi torna qui", {
+        duration: 10000,
+      });
+
+      // Poll for completion
+      const checkPayment = async () => {
+        const { data: captureData, error: captureError } = await supabase.functions.invoke(
+          "capture-paypal-order",
+          {
+            body: { orderId },
+          }
+        );
+
+        if (captureError) {
+          console.error("Capture error:", captureError);
+          return;
+        }
+
+        if (captureData.success) {
+          toast.success(captureData.message);
+          setShowPurchaseDialog(false);
+          setMinecraftUsername("");
+          setSelectedRank(null);
+        }
+      };
+
+      // Check after 30 seconds
+      setTimeout(checkPayment, 30000);
+
+    } catch (error: any) {
+      console.error("Purchase error:", error);
+      toast.error("Errore durante l'acquisto. Riprova.");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   return (
     <section id="store" className="py-20 scroll-mt-20">
       <div className="container mx-auto px-6">
@@ -85,12 +190,14 @@ const Store = () => {
             Supporta il server e ottieni vantaggi esclusivi con i nostri rank premium
           </p>
           
-          {/* Under Construction Banner */}
-          <div className="mt-8 inline-flex items-center gap-2 bg-primary/20 border border-primary/40 rounded-full px-6 py-3">
-            <span className="text-primary text-lg">🚧</span>
-            <span className="text-primary font-bold text-lg">Ancora in costruzione</span>
-            <span className="text-primary text-lg">🚧</span>
-          </div>
+          {!user && (
+            <div className="mt-8 inline-flex items-center gap-2 bg-primary/20 border border-primary/40 rounded-full px-6 py-3">
+              <User className="w-5 h-5 text-primary" />
+              <span className="text-primary font-medium">
+                <a href="/auth" className="hover:underline">Accedi</a> per acquistare un rank
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Ranks Grid */}
@@ -115,7 +222,7 @@ const Store = () => {
                     {rank.name}
                   </CardTitle>
                   <CardDescription className="text-3xl font-bold text-foreground">
-                    {rank.price}
+                    {rank.price.toFixed(2)}€
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -130,11 +237,12 @@ const Store = () => {
                 </CardContent>
                 <CardFooter>
                   <Button 
-                    className="w-full opacity-50 cursor-not-allowed" 
+                    className="w-full" 
                     variant={rank.popular ? "hero" : "outline"}
-                    disabled
+                    onClick={() => handleBuyClick(rank)}
                   >
-                    Prossimamente
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Acquista Ora
                   </Button>
                 </CardFooter>
               </Card>
@@ -148,12 +256,12 @@ const Store = () => {
             <h3 className="text-2xl font-heading font-bold mb-4">Come funziona?</h3>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div>
-                <div className="text-primary font-bold text-lg mb-2">1. Scegli il rank</div>
-                <p className="text-muted-foreground text-sm">Seleziona il rank che preferisci tra quelli disponibili</p>
+                <div className="text-primary font-bold text-lg mb-2">1. Registrati</div>
+                <p className="text-muted-foreground text-sm">Crea un account con il tuo username Minecraft</p>
               </div>
               <div>
-                <div className="text-primary font-bold text-lg mb-2">2. Completa l'acquisto</div>
-                <p className="text-muted-foreground text-sm">Procedi con il pagamento sicuro tramite PayPal o carta</p>
+                <div className="text-primary font-bold text-lg mb-2">2. Paga con PayPal</div>
+                <p className="text-muted-foreground text-sm">Procedi con il pagamento sicuro tramite PayPal</p>
               </div>
               <div>
                 <div className="text-primary font-bold text-lg mb-2">3. Ricevi il rank</div>
@@ -163,6 +271,55 @@ const Store = () => {
           </div>
         </div>
       </div>
+
+      {/* Purchase Dialog */}
+      <Dialog open={showPurchaseDialog} onOpenChange={setShowPurchaseDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5 text-primary" />
+              Acquista {selectedRank?.name}
+            </DialogTitle>
+            <DialogDescription>
+              Inserisci il tuo username Minecraft per procedere all'acquisto
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="purchase-username">Username Minecraft</Label>
+              <Input
+                id="purchase-username"
+                placeholder="Il tuo username sul server"
+                value={minecraftUsername}
+                onChange={(e) => setMinecraftUsername(e.target.value)}
+              />
+              <p className="text-xs text-muted-foreground">
+                Assicurati che corrisponda esattamente al tuo username su EldenMC
+              </p>
+            </div>
+            
+            <div className="bg-muted/50 rounded-lg p-4">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Rank:</span>
+                <span className="font-bold">{selectedRank?.name}</span>
+              </div>
+              <div className="flex justify-between items-center mt-2">
+                <span className="text-muted-foreground">Prezzo:</span>
+                <span className="font-bold text-primary">{selectedRank?.price.toFixed(2)}€</span>
+              </div>
+            </div>
+
+            <Button 
+              className="w-full" 
+              variant="hero"
+              onClick={handlePurchase}
+              disabled={isProcessing || !minecraftUsername.trim()}
+            >
+              {isProcessing ? "Elaborazione..." : "Paga con PayPal"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
