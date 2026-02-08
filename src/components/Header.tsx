@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -32,11 +40,28 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button variant="outline" size="lg" asChild>
-              <a href="#discord">Unisciti a noi</a>
-            </Button>
+          {/* Auth Buttons */}
+          <div className="hidden md:flex items-center gap-4">
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="lg" className="gap-2">
+                    <User size={18} />
+                    Account
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={signOut} className="gap-2 cursor-pointer">
+                    <LogOut size={16} />
+                    Esci
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" size="lg" asChild>
+                <a href="/auth">Accedi</a>
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -79,9 +104,16 @@ const Header = () => {
             >
               Store
             </a>
-            <Button variant="outline" className="w-full mt-2" asChild>
-              <a href="#discord">Unisciti a noi</a>
-            </Button>
+            {user ? (
+              <Button variant="outline" className="w-full mt-2" onClick={signOut}>
+                <LogOut size={16} className="mr-2" />
+                Esci
+              </Button>
+            ) : (
+              <Button variant="outline" className="w-full mt-2" asChild>
+                <a href="/auth">Accedi</a>
+              </Button>
+            )}
           </nav>
         )}
       </div>
