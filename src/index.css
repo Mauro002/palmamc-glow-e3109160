@@ -15,8 +15,8 @@
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 48 96% 53%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 270 80% 60%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
@@ -24,15 +24,15 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 48 96% 53%;
-    --accent-foreground: 0 0% 4%;
+    --accent: 270 80% 60%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 48 96% 53%;
+    --ring: 270 80% 60%;
 
     --radius: 0.75rem;
 
@@ -63,19 +63,19 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary via-yellow-300 to-primary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-purple-300 to-primary bg-clip-text text-transparent;
   }
 
   .glow {
-    box-shadow: 0 0 40px hsl(48 96% 53% / 0.3);
+    box-shadow: 0 0 40px hsl(270 80% 60% / 0.3);
   }
 
   .glow-sm {
-    box-shadow: 0 0 20px hsl(48 96% 53% / 0.2);
+    box-shadow: 0 0 20px hsl(270 80% 60% / 0.2);
   }
 
   .border-glow {
-    border: 1px solid hsl(48 96% 53% / 0.3);
+    border: 1px solid hsl(270 80% 60% / 0.3);
   }
 }
 
@@ -91,10 +91,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(48 96% 53% / 0.3);
+    box-shadow: 0 0 20px hsl(270 80% 60% / 0.3);
   }
   50% {
-    box-shadow: 0 0 40px hsl(48 96% 53% / 0.5);
+    box-shadow: 0 0 40px hsl(270 80% 60% / 0.5);
   }
 }
 
