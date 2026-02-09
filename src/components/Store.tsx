@@ -24,6 +24,7 @@ const ranks = [
     color: "text-green-400",
     bgColor: "bg-green-500/10",
     borderColor: "border-green-500/30",
+    buttonClass: "bg-green-500 hover:bg-green-600 text-white border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)]",
     features: [
       "Kit VIP esclusivo",
       "Tag [VIP] in chat",
@@ -39,6 +40,7 @@ const ranks = [
     color: "text-blue-400",
     bgColor: "bg-blue-500/10",
     borderColor: "border-blue-500/30",
+    buttonClass: "bg-blue-500 hover:bg-blue-600 text-white border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]",
     features: [
       "Tutti i vantaggi VIP",
       "Kit OSCURO potenziato",
@@ -55,6 +57,7 @@ const ranks = [
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
+    buttonClass: "bg-[hsl(270,80%,60%)] hover:bg-[hsl(270,80%,50%)] text-white border-[hsl(270,80%,60%)] shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_25px_rgba(147,51,234,0.5)]",
     features: [
       "Tutti i vantaggi OSCURO",
       "Kit LAMINAX leggendario",
@@ -69,9 +72,10 @@ const ranks = [
     name: "FURIAN",
     price: 14.99,
     icon: Sparkles,
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/10",
-    borderColor: "border-purple-500/30",
+    color: "text-red-400",
+    bgColor: "bg-red-500/10",
+    borderColor: "border-red-500/30",
+    buttonClass: "bg-red-500 hover:bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.3)] hover:shadow-[0_0_25px_rgba(239,68,68,0.5)]",
     features: [
       "Tutti i vantaggi LAMINAX",
       "Kit FURIAN esclusivo",
@@ -237,8 +241,7 @@ const Store = () => {
                 </CardContent>
                 <CardFooter>
                   <Button 
-                    className="w-full" 
-                    variant={rank.popular ? "hero" : "outline"}
+                    className={`w-full transition-all duration-300 ${rank.buttonClass}`}
                     onClick={() => handleBuyClick(rank)}
                   >
                     <ShoppingCart className="w-4 h-4 mr-2" />
